@@ -3,7 +3,7 @@ const desktopMenu = document.querySelector('.desktop-menu')
 const MenuHam= document.querySelector('.menu')
 const mobileMenu= document.querySelector('.mobile-menu')
 const carritoMenu= document.querySelector('.navbar-shopping-cart')
-const aside= document.querySelector('.product-detail')
+const shoppingCart= document.querySelector('#shoppingCartContainer')
 const cards= document.querySelector('.cards-container')
 
 
@@ -16,10 +16,10 @@ function toggleMobile(){
 }
 
 function toggleMenu(){
-    const isAsideClosed = aside.classList.contains('inactive');
+    const isAsideClosed = shoppingCart.classList.contains('inactive');
     
     if (!isAsideClosed) {
-        aside.classList.add('inactive');
+        shoppingCart.classList.add('inactive');
     }
     desktopMenu.classList.toggle('inactive')
 }
@@ -32,7 +32,7 @@ function toggleCarrito(){
         mobileMenu.classList.add('inactive');
     }
 
-    aside.classList.toggle('inactive');
+    shoppingCart.classList.toggle('inactive');
 }
 
 const productList =[];
