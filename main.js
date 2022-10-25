@@ -5,13 +5,21 @@ const mobileMenu= document.querySelector('.mobile-menu')
 const carritoMenu= document.querySelector('.navbar-shopping-cart')
 const shoppingCart= document.querySelector('#shoppingCartContainer')
 const cards= document.querySelector('.cards-container')
+const productDetailContainer= document.querySelector('#productDetail')
+const productDetailClose = document.querySelector('product-detail-close')
 
 
 menuEmail.addEventListener('click', toggleMenu);
 MenuHam.addEventListener('click', toggleMobile);
 carritoMenu.addEventListener('click', toggleCarrito);
+productDetailClose.addEventListener('click', closeProductDetail)
+
+function closeProductDetail(){
+    productDetailContainer.classList.add('inactive')
+}
 
 function toggleMobile(){
+    
     desktopMenu.classList.toggle('inactive')
 }
 
@@ -21,6 +29,7 @@ function toggleMenu(){
     if (!isAsideClosed) {
         shoppingCart.classList.add('inactive');
     }
+    closeProductDetail()
     desktopMenu.classList.toggle('inactive')
 }
 
@@ -33,6 +42,21 @@ function toggleCarrito(){
     }
 
     shoppingCart.classList.toggle('inactive');
+
+
+    const isProductDetailclosed= productDetailContainer.classList.contains('inactive')
+    
+    
+    if (!isProductDetailclosed) {
+        productDetailContainer.classList.add('inactive');
+    }
+
+    shoppingCart.classList.toggle('inactive');
+}
+
+function openProductDetail(){
+    shoppingCartContainer.classList.add('inactive');
+    productDetailContainer.classList.remove('inactive')
 }
 
 const productList =[];
@@ -67,13 +91,15 @@ productList.push({
 //         </div>
 //       </div> -->
 
-
-for (product of productList) {
+function renderProducts(arr){
+for (product of arr) {
     const productCard = document.createElement('div');
     productCard.classList.add('product-card');
 
     const productImg = document.createElement('img');
     productImg.setAttribute('src', product.image);
+
+    productImg.addEventListener('click', openProductDetail)
 
     const productInfo = document.createElement('div');
     productInfo.classList.add('product-info');
@@ -103,3 +129,6 @@ for (product of productList) {
 
     cards.appendChild(productCard);
 }
+}
+
+renderProducts(productList);
